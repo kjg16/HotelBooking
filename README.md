@@ -18,7 +18,7 @@ Við viljum:
 
 * vðhalda upplýsingunum í gagnasafninu
 
-## arkitektút
+## arkitektúr
 
 * gagnasafn inniheldur allar upplýsingar sem leitað er í. það inniheldur töflurnar:
 
@@ -50,4 +50,4 @@ Við viljum:
 
 
 
-> Útgáfa 0.1
+> Útgáfa 0.2
