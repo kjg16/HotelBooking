@@ -10,13 +10,13 @@ Verkefnið er að skapa leitaraðgang að upplýsingum um gistimöguleika.
 
 Við viljum:
 
-* Finna gistingu útfrá staðsetningu, tímabili, verðbili, tagi og hópastærð.
+* finna gistingu útfrá staðsetningu, tímabili, verðbili, tagi og hópastærð.
 
-* Fá lista yfir alla gistimöguleika sem uppfylla hliðarskilyrði
+* fá lista yfir alla gistimöguleika sem uppfylla hliðarskilyrði
 
-* Bóka gistingu á völdum gististað.
+* bóka gistingu á völdum gististað.
 
-* Geta viðhaldið upplýsingunum í gagnasafninu
+* vðhalda upplýsingunum í gagnasafninu
 
 ## arkitektút
 
@@ -30,17 +30,22 @@ Við viljum:
 
 **Finna gistingu:**
 
-Vill geta filterað leitina út frá tímabili, verðbili, staðsetningu, tagi og hópastærð.
+* Vill filtera leitina út frá tímabili, verðbili, staðsetningu, tagi og hópastærð.
 
-vill vera viss um að inntak allra gilda í leitarskilyrðunum séu gils. td ekki bókstafir í talnastreng
+* vill vera viss um að inntak allra gilda í leitarskilyrðunum séu gils. td ekki bókstafir í talnastreng
 
-vill að með innskráningu á notanda sé hægt að vista leitir, fá notkunarsögu og skrifa endurgjöf undir nafni.
+* vill að með innskráningu á notanda sé hægt að vista leitir, fá notkunarsögu og skrifa endurgjöf undir nafni.
+
+* vill leita á mörgum tungumálum
 
 **listi af niðurstöðum**
 
-vill að niðurstaðn sé einn listi með öllum færslum sem uppfylla leitarskilyrðin.
+* vill að niðurstaðn sé einn listi með öllum færslum sem uppfylla leitarskilyrðin.
 
-vill geta fengið 
+* vill fá boð frá leitarkallinu sem lætur vita þegar niðurstaðan er tilbúin til lesturs.
+
+**Bóka gistingu á völdum gististað**
+
 
 
 
