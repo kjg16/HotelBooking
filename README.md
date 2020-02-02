@@ -25,11 +25,18 @@ Við viljum:
 * tryggja að svartími einstakrar fyrirspurna fari ekki yfir 2 sec.
 
 nánari upplýsingar um sögur og undirsögur má finna í [sögur.xlsx](sögur.xlsx). í töflunni eru dálkarnir:
+
 * `id` sem innihedur einkvæmt auðkenni fyrri kröfina.
 * `saga` sem er listi af sögum auðkendum [1..6]
 * `undirsaga` listar af sögum undir ofangreindum sögum auðkendir [1..6].[1..n] þ.s `n` er flöldi undirsaga undir tiltekinni sögu.
 * `tegund` flokkar sögurnar í  `F` = Functional; `Q` = Quality og `G` = General.
 * `forgangur` flokkar sögurnar í forgang til úrvinnslu.
+
+forgangur er skilgreindur eftirfarandi:
+
+* 1 - mandatory.
+* 2 - must have.
+* 3 - nice to have.
 
 ## arkitektúr
 
