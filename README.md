@@ -46,4 +46,4 @@ forgangur er skilgreindur eftirfarandi:
 
 * leitað er í gagna gagnsafninu með því að snýða til fyrirspurnir úr uppgefnum upplýsingum og/eða textastreng og keyra þær á viðeigandi töflur. niuðurstaða leitarinnar er skilað í data strúktúr sem er formaður yfir í json.
 
-> útgáfa 0.3
+> útgáfa 1.0
