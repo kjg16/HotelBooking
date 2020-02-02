@@ -24,6 +24,8 @@ Við viljum:
 
 * tryggja að svartími einstakrar fyrirspurna fari ekki yfir 2 sec.
 
+nánari upplýsingar um sögur og undirsögur má finna [hér](sögur.xlsx).
+
 ## arkitektúr
 
 * gagnasafn inniheldur allar upplýsingar sem leitað er í. það inniheldur töflurnar:
