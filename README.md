@@ -18,7 +18,7 @@ Við viljum:
 
 * bóka gistingu á völdum gististað.
 
-* vðhalda upplýsingunum í gagnasafninu
+* viðhalda upplýsingunum í gagnasafninu
 
 * tryggja öruggan aðgang að leitinni alla daga allt árið.
 
