@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Map;
 
-public class context {
+public class Context {
     // private final String CONST_USERSESSION = "HotelBooking.UserSession";
     // private final String CONST_USERSESSIONCOOKIE = "HotelBooking.UserSessionGUIDCookie";
     // private final String CONST_SESSIONRESET = "HotelBooking.SessionReset";
