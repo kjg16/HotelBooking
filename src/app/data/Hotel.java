@@ -7,6 +7,14 @@ public class Hotel extends BaseEntity
     private TextString description;
     private UrlString url;
 
+    // ctor
+    public Hotel() {
+    }
+    public Hotel(String n) {
+        name.set(n);
+    }
+
+    // props
     public int getId() {
         return super.getId();
     }
