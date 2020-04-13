@@ -4,13 +4,12 @@ import java.sql.Connection;
 import app.utils.Context;
 
 public class BaseController {
-    private Context c = new Context();
-    private Connection connection = c.getConnection();
+    protected Context context;
+    protected Connection conn;
     
-    /**
-     * @return the connection
-     */
-    public Connection getConnection() {
-        return connection;
+    BaseController() {
+        context = new Context();
+        conn = context.getConnection();
+
     }
 }
