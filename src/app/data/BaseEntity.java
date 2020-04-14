@@ -33,9 +33,9 @@ public class BaseEntity implements Serializable {
     public BaseEntity()
     {
     }
-    public BaseEntity(int i)
+    public BaseEntity(int id)
     {
-        id = i;
+        this.id = id;
     }
 
     /**
@@ -48,7 +48,7 @@ public class BaseEntity implements Serializable {
     public int getId() {
         return id;
     }
-    public void setId(int i) {
-        id = i;
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,7 +1,7 @@
 package app.data;
 
-public class Hotel extends BaseEntity 
-{
+public class Hotel extends BaseEntity {
+    
     private static final long serialVersionUID = 1L;
     private NameString name;
     private TextString description;
@@ -10,16 +10,16 @@ public class Hotel extends BaseEntity
     // ctor
     public Hotel() {
     }
-    public Hotel(String n) {
-        name.set(n);
+    public Hotel(String name) {
+        this.name.set(name);
     }
 
     // props
     public int getId() {
         return super.getId();
     }
-    public void setId(int i) {
-        super.setId(i);
+    public void setId(int id) {
+        super.setId(id);
     }
 
     /**
@@ -31,8 +31,8 @@ public class Hotel extends BaseEntity
     /**
      * @param name the name to set
      */
-    public void setName(String s) {
-        this.name = new NameString(s);
+    public void setName(String name) {
+        this.name = new NameString(name);
     }
     /**
      * @return the description
@@ -43,8 +43,8 @@ public class Hotel extends BaseEntity
     /**
      * @param description the description to set
      */
-    public void setDescription(String s) {
-        this.description = new TextString(s);
+    public void setDescription(String description) {
+        this.description = new TextString(description);
     }
     /**
      * @return the url
@@ -55,8 +55,8 @@ public class Hotel extends BaseEntity
     /**
      * @param url the _url to set
      */
-    public void setUrl(String s) {
-        this.url = new UrlString(s);
+    public void setUrl(String url) {
+        this.url = new UrlString(url);
     }
 
     public String GetInfo() {

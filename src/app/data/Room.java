@@ -2,52 +2,54 @@ package app.data;
 
 public class Room extends BaseEntity {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
-    private int _roomNumber;
-    private int _persons;
-    private float _price;
-    // private BookingCollection _bookings;
-    // private PictureCollection _pictures;
-
-
+    private int roomNumber;
+    private int persons;
+    private float price;
+    // private BookingCollection bookings;
+    // private PictureCollection pictures;
 
     /**
-     * @return the _persons
+     * @return the persons
      */
-    public int get_persons() {
-        return _persons;
+    public int getPersons() {
+        return persons;
     }
     /**
-     * @param _persons the _persons to set
+     * @param persons the persons to set
      */
-    public void set_persons(int _persons) {
-        this._persons = _persons;
+    public void setPersons(int persons) {
+        this.persons = persons;
     }
     /**
-     * @return the _price
+     * @return the price
      */
-    public float get_price() {
-        return _price;
+    public float getPrice() {
+        return price;
     }
     /**
-     * @param _price the _price to set
+     * @param price the price to set
      */
-    public void set_price(float _price) {
-        this._price = _price;
+    public void setPrice(float price) {
+        this.price = price;
     }
     /**
-     * @return the _roomNumber
+     * @return the roomNumber
      */
-    public int get_roomNumber() {
-        return _roomNumber;
+    public int getRoomNumber() {
+        return roomNumber;
     }
     /**
-     * @param _roomNumber the _roomNumber to set
+     * @param roomNumber the roomNumber to set
      */
-    public void set_roomNumber(int _roomNumber) {
-        this._roomNumber = _roomNumber;
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    /**
+     * @return the bookings
+     */
+    public BookingCollection getBookings(int roomNumber) {
+        return getBookings(roomNumber);
     }
 }

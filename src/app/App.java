@@ -15,6 +15,7 @@ public class App {
         String d = hotel.getDescription();
         String u = hotel.getUrl();
 
+        System.out.println(i);
         System.out.printf("\nnafn: %s\nlýsing: %s\nurl: %s\n", n, d, u);
     
     }
