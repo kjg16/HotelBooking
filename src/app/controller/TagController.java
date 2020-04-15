@@ -11,7 +11,7 @@ public class TagController extends BaseController {
     public TagCollection getTags(String text) {
 
         final TagCollection tags = new TagCollection();
-        final String sql = "SELECT * from tags WHERE text like '" + text + "'";
+        final String sql = "SELECT * from tag WHERE name like '" + text + "'";
 
         try {
             final Statement statement = conn.createStatement();

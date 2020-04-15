@@ -38,11 +38,19 @@ public class Catalog implements IManage, ISearch {
             for (Review review : reviews) {
                 hotels.add(hotelController.get(review.getHotel()));
             }
-            // for (Tag tag : tags) {
-            //     hotels.add(hotelController.get(tag.))
-            // }
+            for (Tag tag : tags) {
+                List<Integer> t = hotelController.getHotelByTagId(tag.getId());
+                for (Integer i : t) {
+                    Hotel cnd = hotelController.get(i);
+                    if (!hotels.contains(cnd)) hotels.add(cnd);
+                }
+            }
             for (Location location : locations) {
-                hotels.add(hotelController.get(location.getHotel()));
+                List<Integer> h = hotelController.getHotelByLocationId(location.getId());
+                for (Integer i : h) {
+                    Hotel cnd = hotelController.get(i);
+                    if (!hotels.contains(cnd)) hotels.add(cnd);
+                }
             }
         }
 

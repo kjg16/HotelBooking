@@ -9,10 +9,10 @@ import app.data.LocationCollection;
 
 public class LocationController extends BaseController {
 
-    public LocationCollection getLocations(String text) {
+    public LocationCollection getLocations(String name) {
 
         final LocationCollection locations = new LocationCollection();
-        final String sql = "SELECT * from locations WHERE text like '" + text + "'";
+        final String sql = "SELECT * from location WHERE name like '%" + name + "%'";
 
         try {
             final Statement statement = conn.createStatement();
@@ -21,10 +21,7 @@ public class LocationController extends BaseController {
             while (result.next()) {
                 Location location = new Location();
                 location.setId(result.getInt("id"));
-                location.setNo(result.getInt("no"));
-                location.setHotel(result.getInt("hotel"));
-                location.setType(result.getInt("type"));
-                location.setPersons(result.getInt("persons"));
+                location.setName(result.getString("name"));
     
                 locations.add(location);
             }

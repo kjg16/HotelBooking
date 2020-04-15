@@ -13,42 +13,8 @@ public class HotelController extends BaseController {
     public HotelController() {
     }
 
-    public boolean save(final Hotel h) {
-        final String sql = "UPDATE hotel SET name = " + h.getName() +
-                            ", description = " + h.getDescription() + 
-                            ", url = " + h.getUrl() + " WHERE id = " + h.getId();
-        try {
-            final Statement statement = conn.createStatement();
-            final ResultSet result = statement.executeQuery(sql);
-
-            return result.rowUpdated();
-
-        } catch (final SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    public boolean delete(final int id) {
-        final String sql = "DELETE from hotel WHERE id = " + id;
-
-        try {
-            final Statement statement = conn.createStatement();
-            final ResultSet result = statement.executeQuery(sql);
-
-            return result.rowDeleted();
-
-        } catch (final SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false;
-   }
-
-    public Hotel get(final int id) {
+    private Hotel executeRead(String sql) {
         final Hotel hotel = new Hotel();
-        final String sql = "SELECT * from hotel WHERE id = " + id;
 
         try {
             final Statement statement = conn.createStatement();
@@ -67,9 +33,8 @@ public class HotelController extends BaseController {
         return hotel;
     }
 
-    public List<Hotel> getAll() {
+    private List<Hotel> executeReadList(String sql) {
         final List<Hotel> hotels = new ArrayList<Hotel>();
-        final String sql = "SELECT * from hotel";
 
         try {
             final Statement statement = conn.createStatement();
@@ -90,5 +55,71 @@ public class HotelController extends BaseController {
 
         return hotels;
     }
+
+    public boolean save(final Hotel h) {
+        final String sql = "UPDATE hotel SET name = " + h.getName() +
+                            ", description = " + h.getDescription() + 
+                            ", url = " + h.getUrl() + " WHERE id = " + h.getId();
+
+        return executeUpdate(sql);
+    }
+
+    public boolean delete(final int id) {
+        final String sql = "DELETE from hotel WHERE id = " + id;
+
+        return executeDelete(sql);
+   }
+
+    public Hotel get(final int id) {
+        final String sql = "SELECT * from hotel WHERE id = " + id;
+
+        return executeRead(sql);
+    }
+
+    public List<Hotel> getAll() {
+        final String sql = "SELECT * from hotel";
+
+        return executeReadList(sql);
+    }
+
+    public List<Integer> getHotelByLocationId(int locationId) {
+        List<Integer> hotels = new ArrayList<Integer>();
+        final String sql = "Select hotel from HotelLocation where location = " + locationId;
+
+        try {
+            final Statement statement = conn.createStatement();
+            final ResultSet result = statement.executeQuery(sql);
+
+            while (result.next()) {
+                int i = result.getInt("hotel");
+
+                hotels.add(i);
+            }
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+
+        return hotels;
+    }
+
+	public List<Integer> getHotelByTagId(int tagId) {
+        List<Integer> tags = new ArrayList<Integer>();
+        final String sql = "Select hotel from HotelTag where tag = " + tagId;
+
+        try {
+            final Statement statement = conn.createStatement();
+            final ResultSet result = statement.executeQuery(sql);
+
+            while (result.next()) {
+                int i = result.getInt("hotel");
+
+                tags.add(i);
+            }
+        } catch (final SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tags;
+	}
     
 }

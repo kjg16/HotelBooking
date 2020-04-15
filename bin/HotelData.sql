@@ -43,7 +43,7 @@ insert into `Tag`(`id`, `name`) values
 CREATE TABLE `Images` (
     `id` integer NOT NULL AUTO_INCREMENT,
     `type` integer, -- 0 = picture, 1 == video
-    `hotel` int(11),
+    `hotel` integer,
     `url` varchar(8192) NOT NULL,
     PRIMARY KEY (`id`)
 );
@@ -54,10 +54,10 @@ insert into `Images`(`id`, `type`, `hotel`, `url`) values
 (4,0,4,'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcShdAyn8lJrjwiJ2BTVqlGSV_gWvQOwqS6LWPl_R48Riajvegz5&usqp=CAU');
 
 CREATE TABLE `Room` (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id` integer NOT NULL AUTO_INCREMENT,
     `no` integer,
     `type` integer, -- 0 = room, 1 == suit
-    `hotel` int(11),
+    `hotel` integer,
     `persons` integer,
     PRIMARY KEY (`id`)
 );
@@ -99,4 +99,29 @@ insert into `Room`(`id`, `no`, `type`, `hotel`, `persons`) values
 (35,202,0,6,1),
 (36,203,0,6,1);
 
+CREATE TABLE `Review` (
+    `id` integer NOT NULL AUTO_INCREMENT,
+    `user` integer,
+    `hotel` integer,
+    `text` varchar(4096),
+    PRIMARY KEY (`id`)
+);
+insert into `Review`(`id`, `user`, `hotel`, `text`) values
+(1,1,1,'lorum ipsum eða hvað'),
+(2,1,1,'lorum ipsum blah'),
+(3,1,2,'lorum ipsum no2'),
+(4,1,4,'lorum ipsum no4'),
+(5,1,6,'lorum ipsum no6');
+
+CREATE TABLE `HotelLocation` (
+    `hotel` integer NOT NULL,
+    `location` integer NOT NULL
+);
+insert into `HotelLocation`(`hotel`, `location`) values
+(1,1),
+(5,1),
+(2,2),
+(3,3),
+(4,4),
+(5,5);
 
