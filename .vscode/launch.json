@@ -8,7 +8,8 @@
             "type": "java",
             "name": "Debug (Launch) - App.java",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "${file}",
+            "vmArgs": "--module-path S:/Development/Java/javafx-sdk-11.0.2/lib/ --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
