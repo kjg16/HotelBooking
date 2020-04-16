@@ -15,50 +15,6 @@ public class HotelController extends BaseController {
     }
 
     //#region private methods
-
-    // private Hotel executeRead(final String sql) {
-    //     final Hotel hotel = new Hotel();
-
-    //     try {
-    //         final Statement statement = conn.createStatement();
-    //         final ResultSet result = statement.executeQuery(sql);
-
-    //         result.next();
-    //         hotel.setId(result.getInt("id"));
-    //         hotel.setDescription(result.getString("description"));
-    //         hotel.setName(result.getString("name"));
-    //         hotel.setUrl(result.getString("url"));
-
-    //     } catch (final SQLException e) {
-    //         e.printStackTrace();
-    //     }
-
-    //     return hotel;
-    // }
-
-    // private List<Hotel> executeReadList(final String sql) {
-    //     final List<Hotel> hotels = new ArrayList<Hotel>();
-
-    //     try {
-    //         final Statement statement = conn.createStatement();
-    //         final ResultSet result = statement.executeQuery(sql);
-
-    //         while (result.next()) {
-    //             final Hotel hotel = new Hotel();
-    //             hotel.setId(result.getInt("id"));
-    //             hotel.setDescription(result.getString("description"));
-    //             hotel.setName(result.getString("name"));
-    //             hotel.setUrl(result.getString("url"));
-
-    //             hotels.add(hotel);
-    //         }
-    //     } catch (final SQLException e) {
-    //         e.printStackTrace();
-    //     }
-
-    //     return hotels;
-    // }
-
     private HotelItem executeRead(final String sql) {
         final HotelItem hotelItem = new HotelItem();
 

@@ -61,6 +61,7 @@ public class HotelItem extends Hotel {
             ReviewController reviewController = new ReviewController();
             reviews = reviewController.getReviewsByHotelId(getId());
         }
+        
         return reviews;
     }
 }

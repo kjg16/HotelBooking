@@ -12,24 +12,18 @@ import app.data.Tag;
 import app.utils.Catalog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.time.LocalDate;
 
 public class HotelSearch implements Initializable {
 
-    @FXML
-    private Label skilabod;
     @FXML
     private CheckBox vestur;
     @FXML
@@ -46,6 +40,8 @@ public class HotelSearch implements Initializable {
     private Button doSearch;
     @FXML
     private TextField searchString;
+    @FXML
+    private ListView<String> resultList;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -53,15 +49,16 @@ public class HotelSearch implements Initializable {
 
     @FXML
     private void SearchHandler(ActionEvent event) throws IOException {
-        skilabod.setText(searchHotels(getSearchString()));
+        resultList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        resultList.getItems().clear();
+        searchHotels(getSearchString());
     }
 
     private String searchHotels(String s) {
         Catalog catalog = new Catalog();
         String res = "";
-        // List<HotelItem> hotels = catalog.find("útsýni Austurland no2");
-        List<HotelItem> hotels = catalog.find(s);
 
+        List<HotelItem> hotels = catalog.find(s);
         for (HotelItem hotel : hotels) {
             res += "Nafn: " + hotel.getName() + "\nLýsing: " + hotel.getDescription() + "\nUrl: " + hotel.getUrl();
 
@@ -79,9 +76,11 @@ public class HotelSearch implements Initializable {
             for (Review review : hotel.getReviews()) {
                 res += review.getText() + " ";
             }
-            res += "\n\n ---------------------- \n\n";
+
+            res += "\n----------------------------\n";
         }
-        
+
+        resultList.getItems().add(res);
         return res;
     }
     
