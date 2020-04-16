@@ -79,18 +79,26 @@ public class Catalog implements IManage, ISearch {
     // #region override methods
     @Override
     public List<HotelItem> find(final String searchString) {
-        ReviewCollection reviews;
-        TagCollection tags;
-        LocationCollection locations;
         final RoomCollection rooms;
         final List<HotelItem> hotelitems = new ArrayList<HotelItem>();
         final HotelController hotelController = new HotelController();
 
         final String[] arrOfStr = searchString.split(" ");
         for (final String text : arrOfStr) {
+            ReviewCollection reviews;
+            TagCollection tags;
+            LocationCollection locations;
+            List<HotelItem> hotels;
+            
             reviews = getReviews(text);
             tags = getTags(text);
             locations = getLocations(text);
+            hotels = hotelController.FindHotel(text);
+
+            for (HotelItem hotel : hotels) {
+                if(!isListed(hotelitems, hotel.getId()))
+                    hotelitems.add(hotelController.get(hotel.getId()));
+            }
 
             for (final Review review : reviews) {
                 if (!isListed(hotelitems, review.getHotel()))

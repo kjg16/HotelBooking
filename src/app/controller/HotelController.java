@@ -67,26 +67,32 @@ public class HotelController extends BaseController {
     }
 
     public boolean delete(final int id) {
-        final String sql = "DELETE from hotel WHERE id = " + id;
+        final String sql = "DELETE FROM hotel WHERE id = " + id;
 
         return executeDelete(sql);
     }
 
     public HotelItem get(final int id) {
-        final String sql = "SELECT * from hotel WHERE id = " + id;
+        final String sql = "SELECT * FROM hotel WHERE id = " + id;
 
         return executeRead(sql);
     }
 
     public List<HotelItem> getAll() {
-        final String sql = "SELECT * from hotel";
+        final String sql = "SELECT * FROM hotel";
+
+        return executeReadList(sql);
+    }
+
+    public List<HotelItem> FindHotel(String description) {
+        final String sql = "SELECT * FROM hotel where description like '%" + description + "%'";
 
         return executeReadList(sql);
     }
 
     public List<Integer> getHotelByLocationId(final int locationId) {
         final List<Integer> hotels = new ArrayList<Integer>();
-        final String sql = "Select hotel from HotelLocation where location = " + locationId;
+        final String sql = "SELECT hotel FROM HotelLocation WHERE location = " + locationId;
 
         try {
             final Statement statement = context.getConnection().createStatement();
@@ -106,7 +112,7 @@ public class HotelController extends BaseController {
 
     public List<Integer> getHotelByTagId(final int tagId) {
         final List<Integer> tags = new ArrayList<Integer>();
-        final String sql = "Select hotel from HotelTag where tag = " + tagId;
+        final String sql = "SELECT hotel FROM HotelTag WHERE tag = " + tagId;
 
         try {
             final Statement statement = context.getConnection().createStatement();
