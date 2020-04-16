@@ -9,13 +9,11 @@ import app.data.ReviewCollection;
 
 public class ReviewController extends BaseController {
 
-    public ReviewCollection getReviews(String text) {
-
+    private ReviewCollection executeReadList(String sql) {
         final ReviewCollection reviews = new ReviewCollection();
-        final String sql = "SELECT * from review WHERE text like '%" + text + "%'";
 
         try {
-            final Statement statement = conn.createStatement();
+            final Statement statement = context.getConnection().createStatement();
             final ResultSet result = statement.executeQuery(sql);
 
             while (result.next()) {
@@ -32,5 +30,15 @@ public class ReviewController extends BaseController {
         }
 
         return reviews;
+    }
+
+    public ReviewCollection getReviews(String text) {
+        final String sql = "SELECT * from review WHERE text like '%" + text + "%'";
+        return executeReadList(sql);
+    }
+
+    public ReviewCollection getReviewsByHotelId(int hotelId) {
+        final String sql = "SELECT * from review WHERE hotel = " + hotelId;
+        return executeReadList(sql);
     }
 }

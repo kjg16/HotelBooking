@@ -1,26 +1,41 @@
 package app.data;
 
+import app.controller.LocationController;
+import app.controller.ReviewController;
+import app.controller.TagController;
+
 public class HotelItem extends Hotel {
 
     private static final long serialVersionUID = 1L;
+    private LocationCollection locations;
+    private TagCollection tags;
+    private PictureCollection pictures;
+    private VideoCollection videos;
+    private ReviewCollection reviews;
 
-    LocationCollection location;
-    TagCollection tags;
-    PictureCollection pictures;
-    VideoCollection  videos;
-    ReviewCollection reviews;
+    public HotelItem() {
+    }
 
     /**
      * @return the location
      */
     public LocationCollection getLocation() {
-        return location;
+        if (locations == null) {
+            LocationController locationController = new LocationController();
+            locations = locationController.getLocationsByHotelId(getId());
+        }
+
+        return locations;
     }
 
     /**
      * @return the tags
      */
     public TagCollection getTags() {
+        if (tags == null) {
+            TagController tagController = new TagController();
+            tags = tagController.getTagByHotelId(getId());
+        }
         return tags;
     }
 
@@ -42,6 +57,10 @@ public class HotelItem extends Hotel {
      * @return the reviews
      */
     public ReviewCollection getReviews() {
+        if (reviews == null) {
+            ReviewController reviewController = new ReviewController();
+            reviews = reviewController.getReviewsByHotelId(getId());
+        }
         return reviews;
     }
 }

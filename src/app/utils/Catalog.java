@@ -8,6 +8,7 @@ import app.controller.LocationController;
 import app.controller.ReviewController;
 import app.controller.TagController;
 import app.data.Hotel;
+import app.data.HotelItem;
 import app.data.Location;
 import app.data.LocationCollection;
 import app.data.Review;
@@ -19,52 +20,15 @@ import app.data.TagCollection;
 
 public class Catalog implements IManage, ISearch {
 
-    @Override
-    public List<Hotel> find(String searchString) {
-        ReviewCollection reviews;
-        TagCollection tags;
-        LocationCollection locations;
-        RoomCollection rooms;
-        List<Hotel> hotels = new ArrayList<Hotel>();
-        HotelController hotelController = new HotelController();
+    // #region private methods
+    private LocationCollection getLocations(final String text) {
+        final LocationCollection locations = new LocationCollection();
+        final LocationController locationController = new LocationController();
 
-        String[] arrOfStr = searchString.split(" ");
-
-        for (String text : arrOfStr) {
-            reviews = getReviews(text);
-            tags = getTags(text);
-            locations = getLocations(text);
-
-            for (Review review : reviews) {
-                hotels.add(hotelController.get(review.getHotel()));
-            }
-            for (Tag tag : tags) {
-                List<Integer> t = hotelController.getHotelByTagId(tag.getId());
-                for (Integer i : t) {
-                    Hotel cnd = hotelController.get(i);
-                    if (!hotels.contains(cnd)) hotels.add(cnd);
-                }
-            }
-            for (Location location : locations) {
-                List<Integer> h = hotelController.getHotelByLocationId(location.getId());
-                for (Integer i : h) {
-                    Hotel cnd = hotelController.get(i);
-                    if (!hotels.contains(cnd)) hotels.add(cnd);
-                }
-            }
-        }
-
-        return hotels;
-    }
-
-    private LocationCollection getLocations(String text) {
-        LocationCollection locations = new LocationCollection();
-        LocationController locationController = new LocationController();
-
-        LocationCollection l = locationController.getLocations(text);
+        final LocationCollection l = locationController.getLocations(text);
 
         if (!l.isEmpty()) {
-            for (Location location : l) {
+            for (final Location location : l) {
                 locations.add(location);
             }
         }
@@ -72,14 +36,14 @@ public class Catalog implements IManage, ISearch {
         return locations;
     }
 
-    private TagCollection getTags(String text) {
-        TagCollection tags = new TagCollection();
-        TagController tagController = new TagController();
+    private TagCollection getTags(final String text) {
+        final TagCollection tags = new TagCollection();
+        final TagController tagController = new TagController();
 
-        TagCollection t = tagController.getTags(text);
+        final TagCollection t = tagController.getTags(text);
 
         if (!t.isEmpty()) {
-            for (Tag tag : t) {
+            for (final Tag tag : t) {
                 tags.add(tag);
             }
         }
@@ -87,14 +51,14 @@ public class Catalog implements IManage, ISearch {
         return tags;
     }
 
-    private ReviewCollection getReviews(String text) {
-        ReviewCollection reviews = new ReviewCollection();
-        ReviewController reviewController = new ReviewController();
-        
-        ReviewCollection r = reviewController.getReviews(text);
+    private ReviewCollection getReviews(final String text) {
+        final ReviewCollection reviews = new ReviewCollection();
+        final ReviewController reviewController = new ReviewController();
+
+        final ReviewCollection r = reviewController.getReviews(text);
 
         if (!r.isEmpty()) {
-            for (Review review : r) {
+            for (final Review review : r) {
                 reviews.add(review);
             }
         }
@@ -102,140 +66,170 @@ public class Catalog implements IManage, ISearch {
         return reviews;
     }
 
+    private boolean isListed(List<HotelItem> hotels, int id) {
+        for (Hotel hotel : hotels) {
+            if (hotel.getId() == id)
+                return true;
+        }
+
+        return false;
+    }
+    // #endregion
+
+    // #region override methods
     @Override
-    public boolean addReview(Review Review) {
+    public List<HotelItem> find(final String searchString) {
+        ReviewCollection reviews;
+        TagCollection tags;
+        LocationCollection locations;
+        final RoomCollection rooms;
+        final List<HotelItem> hotelitems = new ArrayList<HotelItem>();
+        final HotelController hotelController = new HotelController();
+
+        final String[] arrOfStr = searchString.split(" ");
+        for (final String text : arrOfStr) {
+            reviews = getReviews(text);
+            tags = getTags(text);
+            locations = getLocations(text);
+
+            for (final Review review : reviews) {
+                if (!isListed(hotelitems, review.getHotel()))
+                    hotelitems.add(hotelController.get(review.getHotel()));
+            }
+            for (final Tag tag : tags) {
+                final List<Integer> t = hotelController.getHotelByTagId(tag.getId());
+                for (final Integer i : t) {
+                    if (!isListed(hotelitems, i))
+                        hotelitems.add(hotelController.get(i));
+                }
+            }
+            for (final Location location : locations) {
+                final List<Integer> h = hotelController.getHotelByLocationId(location.getId());
+                for (final Integer i : h) {
+                    if (!isListed(hotelitems, i))
+                        hotelitems.add(hotelController.get(i));
+                }
+            }
+        }
+
+        return hotelitems;
+    }
+
+    // add
+    @Override
+    public boolean addReview(final Review Review) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean addReservation(Room room) {
+    public boolean addReservation(final Room room) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean addReservation(RoomCollection rooms) {
+    public boolean addReservation(final RoomCollection rooms) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean deleteReservation(int id) {
+    public boolean addHotel(final Hotel hotel) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean updateReservation(int id) {
+    public boolean addUser(final User user) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean addHotel(Hotel hotel) {
+    public boolean addLocation(final Location location) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean addLocation(Location location) {
+    public boolean addTag(final Tag tag) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    // delete
+    @Override
+    public boolean deleteReview(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean addTag(Tag tag) {
+    public boolean deleteReservation(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean addUser(User user) {
+    public boolean deleteHotel(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean deleteReview(int id) {
+    public boolean deleteUser(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean deleteHotel(int id) {
+    public boolean deleteLocation(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean deleteUser(int id) {
+    public boolean deleteTag(final int id) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    // update
+    @Override
+    public boolean updateReview(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean deleteLocation(int id) {
+    public boolean updateReservation(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean deleteTag(int id) {
+    public boolean updateHotel(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean updateReview(int id) {
+    public boolean updateUser(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean updateHotel(int id) {
+    public boolean updateLocation(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean updateUser(int id) {
+    public boolean updateTag(final int id) {
         // TODO Auto-generated method stub
         return false;
     }
-
-    @Override
-    public boolean updateLocation(int id) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean updateTag(int id) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    // private methods (public for dev)
-
-    public ReviewCollection findReviews(String searchstring) {
-
-        return null;
-    }
-
-    public TagCollection findTag(String searchString) {
-
-        return null;
-    }
-
-    public LocationCollection findLocation(String searchString) {
-
-        return null;
-    }
-
-    public RoomCollection findRoom(int hotelId) {
-
-        return null;
-    }
-
+    //#endregion
 }

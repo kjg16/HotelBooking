@@ -125,3 +125,15 @@ insert into `HotelLocation`(`hotel`, `location`) values
 (4,4),
 (5,5);
 
+CREATE TABLE `HotelTag` (
+    `hotel` integer NOT NULL,
+    `tag` integer NOT NULL
+);
+insert into `HotelTag`(`hotel`, `tag`) values
+(1,1),
+(5,1),
+(2,2),
+(3,2),
+(3,3),
+(4,4);
+

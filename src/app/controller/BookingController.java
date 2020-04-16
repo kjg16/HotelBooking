@@ -15,7 +15,7 @@ public class BookingController extends BaseController {
         final String sql = "SELECT * from booking WHERE nr = " + roomNumber;
 
         try {
-            final Statement statement = conn.createStatement();
+            final Statement statement = context.getConnection().createStatement();
             final ResultSet result = statement.executeQuery(sql);
 
             while (result.next()) {

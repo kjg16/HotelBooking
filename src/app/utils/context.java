@@ -9,7 +9,7 @@ public class Context {
     // private final String CONST_USERSESSION = "HotelBooking.UserSession";
     // private final String CONST_USERSESSIONCOOKIE = "HotelBooking.UserSessionGUIDCookie";
     // private final String CONST_SESSIONRESET = "HotelBooking.SessionReset";
-    private final String dbURL = "jdbc:mysql://localhost:3306/HotelBookingDB";
+    private final String dbURL = "jdbc:mysql://localhost:3306/HotelBookingDB?autoReconnect=true&useSSL=false";
     private final String username = "root";
     private final String password = "password";
     // private final String password = "GmDm7Add9";
