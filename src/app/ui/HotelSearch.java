@@ -10,6 +10,7 @@ import app.data.Location;
 import app.data.Review;
 import app.data.Tag;
 import app.utils.Catalog;
+import app.utils.IManage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
